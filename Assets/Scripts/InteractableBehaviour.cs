@@ -24,9 +24,8 @@ public class InteractableBehaviour : MonoBehaviour
           }*/
         if (isMoveable)
         {
-            //Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            
+            Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            transform.position = new Vector3(mousePosition.x, mousePosition.y-10, transform.position.z);
         }
 
     }

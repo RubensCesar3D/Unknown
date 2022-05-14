@@ -4,30 +4,22 @@ using UnityEngine;
 
 public class MoveObjectHandler : MonoBehaviour
 {
-    
-
+    [SerializeField] LayerMask selectLayer;
+    [SerializeField] bool isEditMode;
 
     void FixedUpdate()
     {
-        
-        if (Input.GetMouseButton(0))
+
+        if (Input.GetMouseButton(0) && isEditMode)
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
             // Casts the ray and get the first game object hit
-            Physics.Raycast(ray, out hit);
-            
-
-
-            if (hit.collider.gameObject.tag == "Interactable")
-            {
+            if (Physics.Raycast(ray, out hit, 100f, selectLayer)) {
                 InteractableBehaviour scriptIB = hit.collider.gameObject.GetComponent<InteractableBehaviour>();
                 ActivateInteraction(scriptIB);
+                print("activate");
             }
-            else {
-                return;
-            }
-            
         }
     }
     void ActivateInteraction(InteractableBehaviour scriptIB) {

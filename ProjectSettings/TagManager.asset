@@ -5,14 +5,15 @@ TagManager:
   serializedVersion: 2
   tags:
   - Interactable
+  - Screen
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Screen
   - Water
   - UI
-  - 
+  - Interactable
   - 
   - 
   - 

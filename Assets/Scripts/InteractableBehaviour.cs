@@ -2,38 +2,61 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody))]
+
 public class InteractableBehaviour : MonoBehaviour
 {
 
-    
+
+    [SerializeField] LayerMask ignoreLayers;
+    public bool isActive;
     [SerializeField] bool isMoveable;
     [SerializeField] bool isRotateable;
-    public bool isActive;
+   
     [SerializeField] MoveObjectHandler script;
+    [SerializeField] float objectMoveSpeed;
+    [SerializeField] public Rigidbody rb;
+    [SerializeField] public int slotNumber;
+
+
+
     private void Start()
     {
+        rb = gameObject.GetComponent<Rigidbody>();
+        if (slotNumber == 0) {
+            print(gameObject.name + " does't have a slot number assigned");
+        }
         this.enabled = false;
     }
-    private void Update()
+    void Update()
     {
-        /*  if (isActive) {
-              AdjustObjectPosition();
-          } else if (!isActive) {
-              this.enabled = false;
-
-          }*/
-        if (isMoveable)
+        if (isMoveable && Input.GetMouseButton(0))
         {
-            Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            transform.position = new Vector3(mousePosition.x, mousePosition.y-10, transform.position.z);
+            isActive = true;
+            rb.isKinematic = true;
+            slotNumber = 0;
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+            // Casts the ray and get the first game object hit
+            if (Physics.Raycast(ray, out hit, ignoreLayers))
+            {
+                //Vector3 mousePosition = new Vector3(Mathf.Round(hit.point.x), Mathf.Round(hit.point.y), transform.position.z);
+                Vector3 mousePosition = new Vector3(hit.point.x, hit.point.y, transform.position.z);
+                transform.position = Vector3.Lerp(transform.position, mousePosition, objectMoveSpeed);
+            }
         }
-
+        else if (Input.GetMouseButtonUp(0) && isActive)
+        {
+            isActive = false;
+            script.enabled = true;
+            rb.isKinematic = false;
+            this.enabled = false;
+        }
     }
-    
 
 
     public void AdjustObjectPosition() {
-        print("Susseexo!!!");
+        
 
        
 

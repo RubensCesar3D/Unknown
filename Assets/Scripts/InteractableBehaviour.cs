@@ -10,12 +10,14 @@ public class InteractableBehaviour : MonoBehaviour
 
     [SerializeField] LayerMask ignoreLayers;
     public bool isActive;
+    public bool isClicked = false;
     [SerializeField] bool isMoveable;
-    [SerializeField] bool isRotateable;
-   
+    
+
     [SerializeField] MoveObjectHandler script;
     [SerializeField] float objectMoveSpeed;
     [SerializeField] public Rigidbody rb;
+    [SerializeField] public Collider colliderBox;
     [SerializeField] public int slotNumber;
 
 
@@ -23,16 +25,21 @@ public class InteractableBehaviour : MonoBehaviour
     private void Start()
     {
         rb = gameObject.GetComponent<Rigidbody>();
+        colliderBox = gameObject.GetComponent<Collider>();
+
         if (slotNumber == 0) {
             print(gameObject.name + " does't have a slot number assigned");
         }
         this.enabled = false;
     }
+
     void Update()
     {
         if (isMoveable && Input.GetMouseButton(0))
         {
+            isClicked = true;
             isActive = true;
+            colliderBox.isTrigger = false;
             rb.isKinematic = true;
             slotNumber = 0;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);

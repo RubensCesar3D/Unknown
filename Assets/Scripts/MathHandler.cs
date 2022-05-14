@@ -3,16 +3,20 @@ using System.Data;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class MathHandler : MonoBehaviour
 {
     [SerializeField] List<BlockInformation> blocksList = new List<BlockInformation>();
-    [SerializeField] int operandsCap = 10;
     [SerializeField] List<int> equationNumerals = new List<int>();
     [SerializeField] List<string> equationAdditionSym = new List<string>();
     [SerializeField] string equationDivision;
     [SerializeField] string equationConstruction;
+    [SerializeField] TextMeshProUGUI resultText;
 
+    [SerializeField] GameObject blockPrefab;
+
+    public int operandsCap;
     private float equationResult;
 
     private void Start()
@@ -48,9 +52,6 @@ public class MathHandler : MonoBehaviour
             }
         }
         equationResult = Mathf.RoundToInt(float.Parse(new DataTable().Compute(equationConstruction, null).ToString()));
-        print(equationResult);
-       
-        
-        // equation = 5 + 20 - 15 * 10
+        resultText.text = "Can you build the bridge resulting in: " + equationResult; 
     }
 }

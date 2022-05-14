@@ -4,9 +4,14 @@ using UnityEngine;
 
 public class MoveObjectHandler : MonoBehaviour
 {
+    public static MoveObjectHandler handlerScript;
     [SerializeField] LayerMask selectLayer;
     [SerializeField] bool isEditMode;
 
+    private void Awake()
+    {
+        handlerScript = gameObject.GetComponent<MoveObjectHandler>();
+    }
     void FixedUpdate()
     {
 

@@ -7,22 +7,35 @@ using TMPro;
 
 public class MathHandler : MonoBehaviour
 {
+
+    //Block info
+    [SerializeField] GameObject blockPrefab;
     [SerializeField] List<BlockInformation> blocksList = new List<BlockInformation>();
-    [SerializeField] List<int> equationNumerals = new List<int>();
+
+    //Equation Stuff
     [SerializeField] List<string> equationAdditionSym = new List<string>();
-    [SerializeField] string equationDivision;
-    [SerializeField] string equationConstruction;
+    [SerializeField] string equationDivision = "/";
+    [SerializeField] string equationConstruction; // Original Equation string 
+
+    //Result Display
+    private float equationResult;
     [SerializeField] TextMeshProUGUI resultText;
 
-    [SerializeField] GameObject blockPrefab;
+    //Things changed by dificulty 
+    public static int equationLenght;
+    public static int maxNumeral;
+    public static bool isMultiplication;
 
-    public int operandsCap;
-    private float equationResult;
 
     private void Start()
     {
-
-        //equationResult = Random.RandomRange(0, )
+        //Create blocks based on lenght
+        for (int integer = 0; integer < equationLenght; integer++)
+        {
+            GameObject newBlock = UnityEditor.PrefabUtility.InstantiatePrefab(blockPrefab.gameObject as GameObject) as GameObject;
+            newBlock.transform.position = new Vector3(transform.position.x + Random.Range(0, 3), -10 + Random.Range(0, 3), 15);
+            newBlock.transform.parent = gameObject.transform;
+        }
 
         int i = 0;
         foreach (Transform child in transform)
@@ -45,13 +58,13 @@ public class MathHandler : MonoBehaviour
             else
             {
                 // odd - Numeral
-                string assignNumber = "" + Random.Range(1, operandsCap + 1);
+                string assignNumber = "" + Random.Range(1, maxNumeral + 1);
                 equationConstruction = equationConstruction + assignNumber;
 
                 childScript.AssignValues(int.Parse(assignNumber), true, "");
             }
         }
         equationResult = Mathf.RoundToInt(float.Parse(new DataTable().Compute(equationConstruction, null).ToString()));
-        resultText.text = "Can you build the bridge resulting in: " + equationResult; 
+        resultText.text = "Can you build the bridge resulting in: " + equationResult;
     }
 }

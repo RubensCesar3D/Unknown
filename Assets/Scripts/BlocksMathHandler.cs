@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class MathHandler : MonoBehaviour
+public class BlocksMathHandler : MonoBehaviour
 {
 
     //Block info
@@ -21,18 +21,13 @@ public class MathHandler : MonoBehaviour
     private float equationResult;
     [SerializeField] TextMeshProUGUI resultText;
 
-    //Things changed by dificulty 
-    public static int equationLenght;
-    public static int maxNumeral;
-    public static bool isMultiplication;
-
-
-    private void Start()
+    public void ActivateBlocks(int lenght, int maxN, bool isMult)
     {
         //Create blocks based on lenght
-        for (int integer = 0; integer < equationLenght; integer++)
+        for (int integer = 0; integer < lenght; integer++)
         {
             GameObject newBlock = UnityEditor.PrefabUtility.InstantiatePrefab(blockPrefab.gameObject as GameObject) as GameObject;
+            newBlock.name = newBlock.name + "_0" + integer; 
             newBlock.transform.position = new Vector3(transform.position.x + Random.Range(0, 3), -10 + Random.Range(0, 3), 15);
             newBlock.transform.parent = gameObject.transform;
         }
@@ -58,7 +53,7 @@ public class MathHandler : MonoBehaviour
             else
             {
                 // odd - Numeral
-                string assignNumber = "" + Random.Range(1, maxNumeral + 1);
+                string assignNumber = "" + Random.Range(1, maxN + 1);
                 equationConstruction = equationConstruction + assignNumber;
 
                 childScript.AssignValues(int.Parse(assignNumber), true, "");

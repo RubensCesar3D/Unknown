@@ -117,7 +117,7 @@ GameObject:
   - component: {fileID: 5339641508855873573}
   - component: {fileID: 5339641508855873577}
   m_Layer: 6
-  m_Name: Int_Cube_01
+  m_Name: Int_Cube
   m_TagString: Interactable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

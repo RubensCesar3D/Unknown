@@ -5,7 +5,7 @@ using UnityEngine;
 public class SlotBehaviour : MonoBehaviour
 {
     //Slot Info
-    [SerializeField] int slotNumber;
+    [SerializeField] public int slotNumber;
     [SerializeField] bool isCollision =false;
     private bool isNumeralSlot;
 

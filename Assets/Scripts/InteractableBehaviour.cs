@@ -27,9 +27,9 @@ public class InteractableBehaviour : MonoBehaviour
         rb = gameObject.GetComponent<Rigidbody>();
         colliderBox = gameObject.GetComponent<Collider>();
 
-        if (slotNumber == 0) {
+       /* if (slotNumber == 0) {
             print(gameObject.name + " does't have a slot number assigned");
-        }
+        }*/
         this.enabled = false;
     }
 

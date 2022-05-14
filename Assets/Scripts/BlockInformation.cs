@@ -9,24 +9,29 @@ public class BlockInformation : MonoBehaviour
     public int value;
     public string symbol;
 
-    private TextMeshPro displayValue;
+    [SerializeField] private TextMeshProUGUI displayValueTMP;
 
-    public void AssignValues(int feedValue, bool feedBool, string feedSymbol) {
+
+    public void AssignValues(int feedValue, bool feedBool, string feedSymbol)
+    {
+        if (displayValueTMP == null)
+        {
+            displayValueTMP = GetComponentInChildren<TextMeshProUGUI>();
+        }
+        symbol = feedSymbol;
         isNumber = feedBool;
-        if (isNumber)
+
+
+        if (isNumber && displayValueTMP != null)
         {
             value = feedValue;
-            //displayValue.text = "" + value;
-            print("" + value);
+            displayValueTMP.text = "" + value;
         }
-        else {
-            symbol = feedSymbol;
-            //displayValue.text = "" + symbol;
-            print("" + symbol);
+        else if (!isNumber && displayValueTMP != null)
+        {
+            displayValueTMP.text = "" + symbol;
         }
-
+        
     }
-
-
 
 }

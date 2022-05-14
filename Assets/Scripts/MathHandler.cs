@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class MathHandler : MonoBehaviour
 {
-    [SerializeField] List<Transform> slotPositions = new List<Transform>();
+    [SerializeField] List<BlockInformation> slotPositions = new List<BlockInformation>();
+    int i;
 
     private void Awake()
     {
-        foreach (Transform child in transform.GetComponentInChildren<Transform>()) {
-            slotPositions.Add(child.transform);
-            // print("added" + child);
+        foreach (BlockInformation child in slotPositions) {
+            i++;
+            child.AssignValues(5+i,true, "null" );
         }
         if (slotPositions.Count % 2 == 0)
             {

@@ -5,9 +5,9 @@ using TMPro;
 
 public class BlockInformation : MonoBehaviour
 {
-    private bool isNumber;
-    private int value;
-    private string symbol;
+    public bool isNumber;
+    public int value;
+    public string symbol;
 
     private TextMeshPro displayValue;
 
@@ -16,12 +16,13 @@ public class BlockInformation : MonoBehaviour
         if (isNumber)
         {
             value = feedValue;
-            displayValue.text = "" + value;
+            //displayValue.text = "" + value;
+            print("" + value);
         }
         else {
             symbol = feedSymbol;
-            displayValue.text = "" + symbol;
-
+            //displayValue.text = "" + symbol;
+            print("" + symbol);
         }
 
     }

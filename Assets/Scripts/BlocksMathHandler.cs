@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEditor;
 
 public class BlocksMathHandler : MonoBehaviour
 {
@@ -17,7 +18,7 @@ public class BlocksMathHandler : MonoBehaviour
     [SerializeField] string equationConstruction; // Original Equation string 
 
     //Result Display
-    private float equationResult;
+    public static float equationResult;
     [SerializeField] TextMeshProUGUI resultText;
 
     public void ActivateBlocks(int lenght, int maxN, bool isMult, List<string> equationSymbolsList)
@@ -25,7 +26,7 @@ public class BlocksMathHandler : MonoBehaviour
         //Create blocks based on lenght
         for (int integer = 0; integer < lenght; integer++)
         {
-            GameObject newBlock = UnityEditor.PrefabUtility.InstantiatePrefab(blockPrefab.gameObject as GameObject) as GameObject;
+            GameObject newBlock = Instantiate(blockPrefab.gameObject as GameObject) as GameObject;
             newBlock.name = newBlock.name + "_0" + integer; 
             newBlock.transform.position = new Vector3(transform.position.x + Random.Range(0, 3), -10 + Random.Range(0, 3), 15);
             newBlock.transform.parent = gameObject.transform;

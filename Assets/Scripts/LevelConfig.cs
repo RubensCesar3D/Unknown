@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
+
+
 public class LevelConfig : MonoBehaviour
 {
     [SerializeField] List<string> gameDificultyList = new List<string>();

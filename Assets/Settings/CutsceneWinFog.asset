@@ -176,19 +176,19 @@ MonoBehaviour:
     m_Value: 1000
   baseHeight:
     m_OverrideState: 1
-    m_Value: -10.7
+    m_Value: -29.47
   maximumHeight:
     m_OverrideState: 0
     m_Value: 83.2
   meanFreePath:
     m_OverrideState: 1
-    m_Value: 37.2
+    m_Value: 9.76
   enableVolumetricFog:
     m_OverrideState: 1
     m_Value: 1
   albedo:
     m_OverrideState: 1
-    m_Value: {r: 0.3571111, g: 0.60608274, b: 0.7075472, a: 1}
+    m_Value: {r: 0.2696244, g: 0.638807, b: 0.7830189, a: 1}
   globalLightProbeDimmer:
     m_OverrideState: 0
     m_Value: 1
@@ -232,7 +232,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d7fd9488000d3734a9e00ee676215985, type: 3}
-  m_Name: SkyandFogSettingsProfile
+  m_Name: CutsceneWinFog
   m_EditorClassIdentifier: 
   components:
   - {fileID: 1142777632297148762}

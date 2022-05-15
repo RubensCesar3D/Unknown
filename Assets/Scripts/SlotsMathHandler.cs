@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEditor;
 
 public class SlotsMathHandler : MonoBehaviour
 {
@@ -17,9 +18,14 @@ public class SlotsMathHandler : MonoBehaviour
     private float playerEquationResult;
     private int slotsFilledCount =0;
 
-    [SerializeField] GameObject resultScreen;
+    //Add to EndScreen
+    [SerializeField] List<TextMeshProUGUI> displayYourEquation = new List<TextMeshProUGUI>();
+    [SerializeField] List<TextMeshProUGUI> displayYourResult = new List<TextMeshProUGUI>();
+    [SerializeField] List<TextMeshProUGUI> displayExpectedResult = new List<TextMeshProUGUI>();
+    [SerializeField] List<GameObject> endScreen = new List<GameObject>();
+    [SerializeField] GameObject playScene;
+
     [SerializeField] Button buildBridgeBTN;
-    [SerializeField] TextMeshProUGUI resultTMP;
 
     public void ActivateSlots(int lenght, int maxN, bool isMult)
     {
@@ -29,7 +35,7 @@ public class SlotsMathHandler : MonoBehaviour
             if ((integer + 1) % 2 == 0)
             {
                 // even - Spwan Symbols Slot
-                GameObject newSlot = UnityEditor.PrefabUtility.InstantiatePrefab(slotNumeralPrefab.gameObject as GameObject) as GameObject;
+                GameObject newSlot = Instantiate(slotNumeralPrefab.gameObject as GameObject) as GameObject;
 
                 //Make instance a child, get script and add to list
                 newSlot.transform.parent = gameObject.transform;
@@ -49,7 +55,7 @@ public class SlotsMathHandler : MonoBehaviour
             else
             {
                 // Odd - Spwan Numeral Slot
-                GameObject newSlot = UnityEditor.PrefabUtility.InstantiatePrefab(slotNumeralPrefab.gameObject as GameObject) as GameObject;
+                GameObject newSlot = Instantiate(slotNumeralPrefab.gameObject as GameObject) as GameObject;
 
                 //Make instance a child, get script and add to list
                 newSlot.transform.parent = gameObject.transform;
@@ -94,7 +100,8 @@ public class SlotsMathHandler : MonoBehaviour
 
     public void SubmitEquation()
     {
-            foreach (SlotBehaviour slot in slotList)
+        //Add equation to String
+        foreach (SlotBehaviour slot in slotList)
         {
             if (slot.isNumeralSlot)
             {
@@ -105,9 +112,48 @@ public class SlotsMathHandler : MonoBehaviour
                 finalAnswer = finalAnswer + slot.blockInfo.symbol + " ";
             }
         }
+
+
         playerEquationResult = Mathf.RoundToInt(float.Parse(new DataTable().Compute(finalAnswer, null).ToString()));
-        resultTMP.text = "Your bridge result is: " + playerEquationResult;
-        resultScreen.SetActive(true);
-        Destroy(this);
+       
+        //old
+        //resultTMP.text = "Your bridge result is: " + playerEquationResult;
+        //resultScreen.SetActive(true);
+        //Destroy(this);
+
+        if (playerEquationResult == BlocksMathHandler.equationResult)
+        {
+            SendToWinScene();
+        }
+        else {
+            SendToLoserScene();
+        }
+        
     }
+    void SendToWinScene()
+    {
+        playScene.SetActive(false);
+        endScreen[0].SetActive(true);
+        endScreen[1].SetActive(true);
+        displayYourEquation[0].text = finalAnswer;
+        displayYourResult[0].text = "" + playerEquationResult;
+        displayExpectedResult[0].text = "" + BlocksMathHandler.equationResult;
+
+
+
+
+    }
+    void SendToLoserScene()
+    {
+        playScene.SetActive(false);
+        endScreen[0].SetActive(true);
+        endScreen[2].SetActive(true);
+        displayYourEquation[1].text = finalAnswer;
+        displayYourResult[1].text = "" + playerEquationResult;
+        displayExpectedResult[1].text = ""+BlocksMathHandler.equationResult;
+
+
+
+    }
+
 }

@@ -6,14 +6,14 @@ public class SlotBehaviour : MonoBehaviour
 {
     //Slot Info
     [SerializeField] public int slotNumber;
-    [SerializeField] bool isCollision =false;
-    private bool isNumeralSlot;
+    [SerializeField] public bool isCollision = false; //checks if there's a block attatched
+    public bool isNumeralSlot;
 
 
     //Attatching Block info
     private bool isFilled;
     InteractableBehaviour blockScript;
-    BlockInformation blockInfo;
+    public BlockInformation blockInfo;
 
 
 
@@ -40,19 +40,23 @@ public class SlotBehaviour : MonoBehaviour
     {
         if (other.TryGetComponent(out InteractableBehaviour otherScript) && otherScript.isActive == false && otherScript.isClicked && !isFilled)
         {
-            isFilled =true; //prevents other blocks from attatching
             //get Scripts
             blockScript = otherScript;
             blockInfo = otherScript.gameObject.GetComponent<BlockInformation>();
-
-            if (otherScript.slotNumber == 0 && isNumeralSlot == blockInfo.isNumber)
+            if (isNumeralSlot == blockInfo.isNumber)
             {
-                other.isTrigger = true;
-                otherScript.rb.isKinematic = true;
-                isCollision = true;
-                otherScript.slotNumber = slotNumber;
+                isFilled = true; //prevents other blocks from attatching
+
+
+                if (otherScript.slotNumber == 0)
+                {
+                    other.isTrigger = true;
+                    otherScript.rb.isKinematic = true;
+                    isCollision = true;
+                    otherScript.slotNumber = slotNumber;
+                }
             }
         }
-      
+
     }
 }

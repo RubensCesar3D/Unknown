@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Interactable
   - Screen
+  - Bounds
   layers:
   - Default
   - TransparentFX

@@ -116,6 +116,7 @@ GameObject:
   - component: {fileID: 5339641508855873574}
   - component: {fileID: 5339641508855873573}
   - component: {fileID: 5339641508855873577}
+  - component: {fileID: 5263092705331958843}
   m_Layer: 6
   m_Name: Int_Cube
   m_TagString: Interactable
@@ -257,6 +258,18 @@ MonoBehaviour:
   value: 0
   symbol: 
   displayValueTMP: {fileID: 0}
+--- !u!114 &5263092705331958843
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5339641508855873568}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1a479ad72a1aaf43b0718f677c0f316, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5339641509264329753
 GameObject:
   m_ObjectHideFlags: 0

@@ -13,15 +13,14 @@ public class BlocksMathHandler : MonoBehaviour
     [SerializeField] List<BlockInformation> blocksList = new List<BlockInformation>();
 
     //Equation Stuff
-    [SerializeField] List<string> equationAdditionSym = new List<string>();
-    [SerializeField] string equationDivision = "/";
+    
     [SerializeField] string equationConstruction; // Original Equation string 
 
     //Result Display
     private float equationResult;
     [SerializeField] TextMeshProUGUI resultText;
 
-    public void ActivateBlocks(int lenght, int maxN, bool isMult)
+    public void ActivateBlocks(int lenght, int maxN, bool isMult, List<string> equationSymbolsList)
     {
         //Create blocks based on lenght
         for (int integer = 0; integer < lenght; integer++)
@@ -44,7 +43,7 @@ public class BlocksMathHandler : MonoBehaviour
             if (i % 2 == 0)
             {
                 // even - Symbols
-                string assignSymbol = equationAdditionSym[Random.Range(0, equationAdditionSym.Count)];
+                string assignSymbol = equationSymbolsList[Random.Range(0, equationSymbolsList.Count)];
                 equationConstruction = equationConstruction + assignSymbol;
                 childScript.AssignValues(0, false, assignSymbol);
                 // print("even");

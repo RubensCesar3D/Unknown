@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using TMPro;
 
 public class SlotsMathHandler : MonoBehaviour
 {
@@ -16,8 +16,10 @@ public class SlotsMathHandler : MonoBehaviour
     private string finalAnswer;
     private float playerEquationResult;
     private int slotsFilledCount =0;
-    [SerializeField] Button buildBridgeBTN;
 
+    [SerializeField] GameObject resultScreen;
+    [SerializeField] Button buildBridgeBTN;
+    [SerializeField] TextMeshProUGUI resultTMP;
 
     public void ActivateSlots(int lenght, int maxN, bool isMult)
     {
@@ -84,7 +86,7 @@ public class SlotsMathHandler : MonoBehaviour
             buildBridgeBTN.interactable = true;
         }
         else {
-            buildBridgeBTN.interactable = false;
+            buildBridgeBTN.interactable = false ;
         }
     }
 
@@ -104,7 +106,8 @@ public class SlotsMathHandler : MonoBehaviour
             }
         }
         playerEquationResult = Mathf.RoundToInt(float.Parse(new DataTable().Compute(finalAnswer, null).ToString()));
-        print(playerEquationResult);
+        resultTMP.text = "Your bridge result is: " + playerEquationResult;
+        resultScreen.SetActive(true);
         Destroy(this);
     }
 }

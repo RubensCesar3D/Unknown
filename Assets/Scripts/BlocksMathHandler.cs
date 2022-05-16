@@ -10,7 +10,7 @@ public class BlocksMathHandler : MonoBehaviour
 {
 
     //Block info
-    [SerializeField] GameObject blockPrefab;
+    [SerializeField] GameObject blockNumPrefab;
     [SerializeField] List<BlockInformation> blocksList = new List<BlockInformation>();
 
     //Equation Stuff
@@ -26,7 +26,7 @@ public class BlocksMathHandler : MonoBehaviour
         //Create blocks based on lenght
         for (int integer = 0; integer < lenght; integer++)
         {
-            GameObject newBlock = Instantiate(blockPrefab.gameObject as GameObject) as GameObject;
+            GameObject newBlock = Instantiate(blockNumPrefab.gameObject as GameObject) as GameObject;
             newBlock.name = newBlock.name + "_0" + integer; 
             newBlock.transform.position = new Vector3(transform.position.x + Random.Range(0, 3), -10 + Random.Range(0, 3), 15);
             newBlock.transform.parent = gameObject.transform;

@@ -35,7 +35,7 @@ public class SlotsMathHandler : MonoBehaviour
             if ((integer + 1) % 2 == 0)
             {
                 // even - Spwan Symbols Slot
-                GameObject newSlot = Instantiate(slotNumeralPrefab.gameObject as GameObject) as GameObject;
+                GameObject newSlot = Instantiate(slotSymbolPrefab.gameObject as GameObject) as GameObject;
 
                 //Make instance a child, get script and add to list
                 newSlot.transform.parent = gameObject.transform;

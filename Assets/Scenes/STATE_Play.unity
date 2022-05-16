@@ -802,7 +802,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23da29a72cd96b1488bcd94359c64b6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  blockPrefab: {fileID: 5339641508855873568, guid: 3e4736226b19fd541a4f536c12452ac0,
+  blockNumPrefab: {fileID: 5339641508855873568, guid: 3e4736226b19fd541a4f536c12452ac0,
     type: 3}
   blocksList: []
   equationConstruction: 
@@ -853,7 +853,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slotNumeralPrefab: {fileID: 712157275008472835, guid: a9269f95245aa9240859aee0273be3ce,
     type: 3}
-  slotSymbolPrefab: {fileID: 0}
+  slotSymbolPrefab: {fileID: 712157275008472835, guid: 7d93b4a5ca2522d43afe688ad0bab8bb,
+    type: 3}
   slotList: []
   displayYourEquation:
   - {fileID: 1512495248}
